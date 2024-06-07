@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 interface User {
   userId: string;
   firstname: string;
@@ -18,6 +20,8 @@ export default async function User() {
   const renderedUsers = res.users.map((user: User) => (
     <li key={user.userId}>{user.firstname}</li>
   ));
+
+  if (!res) return notFound();
 
   return (
     <div>
